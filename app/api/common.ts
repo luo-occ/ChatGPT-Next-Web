@@ -31,8 +31,10 @@ export async function requestOpenai(req: NextRequest) {
   );
 
   let baseUrl =
-    serverConfig.azureUrl || serverConfig.baseUrl || OPENAI_BASE_URL;
-
+    serverConfig.proxyUrl ||
+    serverConfig.azureUrl ||
+    serverConfig.baseUrl ||
+    OPENAI_BASE_URL;
   if (!baseUrl.startsWith("http")) {
     baseUrl = `https://${baseUrl}`;
   }
